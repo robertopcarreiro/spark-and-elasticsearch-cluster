@@ -9,6 +9,12 @@ RUN apt-get update -y && \
     apt-get install -y python3-pip && \
     pip3 install wget pyspark==${spark_version} jupyterlab==${jupyterlab_version}
 
+RUN pip3 install pyexcel \
+    && pip3 install XlsxWriter \
+    && pip3 install html5lib \
+    && pip3 install lxml \
+    && pip3 install koalas
+
 # -- Runtime
 
 EXPOSE 8888

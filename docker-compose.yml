@@ -15,8 +15,8 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "2"
-          memory: 16G
+          cpus: "0.5"
+          memory: 1G
     ports:
       - 8888:8888
     volumes:
@@ -28,8 +28,8 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "8"
-          memory: 32G
+          cpus: "0.5"
+          memory: 1G
     ports:
       - 8080:8080
       - 7077:7077
@@ -42,11 +42,11 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "8"
-          memory: 32G
+          cpus: "0.5"
+          memory: 1G
     environment:
-      - SPARK_WORKER_CORES=8
-      - SPARK_WORKER_MEMORY=32G
+      - SPARK_WORKER_CORES=0.5
+      - SPARK_WORKER_MEMORY=1G
     ports:
       - 8081:8081
     volumes:
@@ -60,11 +60,11 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "8"  
-          memory: 32G       
+          cpus: "0.5"  
+          memory: 1G       
     environment:
-      - SPARK_WORKER_CORES=8
-      - SPARK_WORKER_MEMORY=32G
+      - SPARK_WORKER_CORES=0.5
+      - SPARK_WORKER_MEMORY=1G
     ports:
       - 8082:8081
     volumes:
@@ -78,49 +78,13 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "8"  
-          memory: 32G       
+          cpus: "0.5"  
+          memory: 1G       
     environment:
-      - SPARK_WORKER_CORES=8
-      - SPARK_WORKER_MEMORY=32G
+      - SPARK_WORKER_CORES=0.5
+      - SPARK_WORKER_MEMORY=1G
     ports:
       - 8083:8081
-    volumes:
-      - shared-workspace:/opt/workspace
-    depends_on:
-      - spark-master
-
-  spark-worker-4:
-    image: spark-worker
-    container_name: spark-worker-4
-    deploy:
-      resources: 
-        limits: 
-          cpus: "8"  
-          memory: 32G       
-    environment:
-      - SPARK_WORKER_CORES=8
-      - SPARK_WORKER_MEMORY=32G
-    ports:
-      - 8084:8081
-    volumes:
-      - shared-workspace:/opt/workspace
-    depends_on:
-      - spark-master
-
-  spark-worker-5:
-    image: spark-worker
-    container_name: spark-worker-5
-    deploy:
-      resources: 
-        limits: 
-          cpus: "8"  
-          memory: 32G       
-    environment:
-      - SPARK_WORKER_CORES=8
-      - SPARK_WORKER_MEMORY=32G
-    ports:
-      - 8085:8081
     volumes:
       - shared-workspace:/opt/workspace
     depends_on:
@@ -132,8 +96,8 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "16" 
-          memory: 64G       
+          cpus: "0.5" 
+          memory: 1G       
     ports:
       - "9200:9200"
       - "9300:9300"
@@ -150,21 +114,12 @@ services:
     deploy:
       resources: 
         limits: 
-          cpus: "2"  
-          memory: 16G       
+          cpus: "0.5"  
+          memory: 1G       
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       HQ_DEFAULT_URL: http://elasticsearch:9200
     depends_on:
       - elasticsearch
-      
-  #kibana:
-  #  image: docker.elastic.co/kibana/kibana:7.7.0
-  #  container_name: kibana
-  #  ports:
-  #    - "5601:5601"
-  #  environment:
-  #    ELASTICSEARCH_URL: http://elasticsearch:9200
-  #  depends_on:
-  #    - elasticsearch
+  
